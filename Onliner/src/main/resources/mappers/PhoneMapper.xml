@@ -1,0 +1,32 @@
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace='com.qaprosoft.onliner.mappers.PhoneMapper'>
+
+<resultMap type='Phone' id='PhoneResult'>
+		<id column="id" property="id" />
+		<id column="model" property="model" />
+		<id column="brand" property="brand" />
+		<id column="resolution" property="resolution" />
+		<id column="os" property="os" />
+		<id column="display" property="display" />
+		<id column="year" property="year" />
+	</resultMap>
+
+    <select id="getPhoneById" parameterType='int' resultMap="PhoneResult"> 
+    	SELECT Phone.id as id, Phone.model as model, Phone.resolution as resolution, Brand.name as brand, OS.name as os, Display.type as display, Year.year as year 
+    	FROM Phone LEFT JOIN Brand ON Phone.Brand_id = Brand.id 
+    	LEFT JOIN OS ON Phone.OS_id = OS.id 
+    	LEFT JOIN Display ON Phone.Display_id = Display.id 
+    	LEFT JOIN Year ON Phone.Year_id = Year.id 
+    	WHERE Phone.id = #{id}  ;
+	</select>
+	
+	<select id="getAllPhones" resultMap="PhoneResult"> 
+    	SELECT Phone.id as id, Phone.model as model, Phone.resolution as resolution, Brand.name as brand, OS.name as os, Display.type as display, Year.year as year 
+    	FROM Phone LEFT JOIN Brand ON Phone.Brand_id = Brand.id 
+    	LEFT JOIN OS ON Phone.OS_id = OS.id 
+    	LEFT JOIN Display ON Phone.Display_id = Display.id 
+    	LEFT JOIN Year ON Phone.Year_id = Year.id 
+	</select>
+	
+</mapper>

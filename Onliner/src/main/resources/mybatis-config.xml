@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE configuration 
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<properties resource="_database.properties" />
+
+	<settings>
+		<setting name="useGeneratedKeys" value="true" />
+	</settings>
+
+	<typeAliases>
+		<typeAlias type="com.qaprosoft.onliner.objects.Fridge" alias="Fridge"/>
+		<typeAlias type="com.qaprosoft.onliner.objects.Phone" alias="Phone"/>
+	</typeAliases>
+
+	<environments default="demo">
+		<environment id="demo">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name='driver' value='${db.driver}'/>
+				<property name='url' value='${db.url}'/>
+				<property name='username' value='${db.user}'/>
+				<property name='password' value='${db.pass}'/>
+			</dataSource>
+		</environment>
+	</environments>
+
+	<mappers>
+		<mapper resource="mappers/FridgeMapper.xml" />
+		<mapper resource="mappers/PhoneMapper.xml" />
+	</mappers>
+
+</configuration>
